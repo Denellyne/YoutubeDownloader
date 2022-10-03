@@ -1,1 +1,1 @@
-YoutubeDownloader\ffmpeg.exe -y -i YoutubeDownloader\Temp\video.mp4 -i YoutubeDownloader\Temp\audio.mp3 -c:v copy -c:a aac YoutubeDownloader\output.mp4
+.\ffmpeg.exe -y -i Temp\video.mp4 -i Temp\audio.mp3 -c:v copy -c:a aac output.mp4

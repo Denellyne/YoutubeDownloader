@@ -42,9 +42,9 @@ class Converter():
             pass
         if qc == "2":
             YouTube(url).streams.filter(
-                adaptive=True).first().download(filename="video.mp4", output_path=r"YoutubeDownloader\Temp")
-            YouTube(url).streams.filter(only_audio=True).first().download(filename="audio.mp3", output_path=r"YoutubeDownloader\Temp")
-            p = subprocess.Popen(r'powershell.exe -ExecutionPolicy RemoteSigned -file "YoutubeDownloader/run.ps1"', stdout=sys.stdout)
+                adaptive=True).first().download(filename="video.mp4", output_path=r"Temp")
+            YouTube(url).streams.filter(only_audio=True).first().download(filename="audio.mp3", output_path=r"Temp")
+            p = subprocess.Popen(r'powershell.exe -ExecutionPolicy RemoteSigned -file "run.ps1"', stdout=sys.stdout)
             p.communicate()
             time.sleep(0.0001)
             Progress.stop()
