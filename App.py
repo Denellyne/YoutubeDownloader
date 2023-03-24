@@ -7,6 +7,7 @@ import threading
 import ffmpeg
 from pytube import YouTube
 import time
+
 # Function
 qc = ""
 
@@ -51,7 +52,8 @@ class Converter():
         else:
             pass
         if qc == "3":
-            title = YouTube(url).title
+            pre = YouTube(url).title
+            title = pre.replace(":","").replace(",","").replace(".","").replace("!","").replace("?","").replace("|","")
             YouTube(url).streams.filter(only_audio=True).first().download(filename="{}.mp3".format(title))
             time.sleep(0.0001)
             Progress.stop()
