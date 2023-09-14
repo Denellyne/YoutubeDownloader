@@ -1,1 +1,0 @@
-.\ffmpeg.exe -y -i Temp\video.mp4 -i Temp\audio.mp3 -c:v copy -c:a aac output.mp4

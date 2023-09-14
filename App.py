@@ -1,12 +1,11 @@
 # Import
-import subprocess, sys
 import tkinter.simpledialog
 from tkinter import *
 from tkinter import ttk
 import threading
-import ffmpeg
 from pytube import YouTube
 import time
+import os
 
 # Function
 qc = ""
@@ -15,18 +14,12 @@ qc = ""
 def qc1():
     global qc
     qc = "1"
-
-
 def qc2():
     global qc
     qc = "2"
-
-
 def qc3():
     global qc
     qc = "3"
-
-
 def link():
     global url
     url = getlink.get()
@@ -45,8 +38,7 @@ class Converter():
             YouTube(url).streams.filter(
                 adaptive=True).first().download(filename="video.mp4", output_path=r"Temp")
             YouTube(url).streams.filter(only_audio=True).first().download(filename="audio.mp3", output_path=r"Temp")
-            p = subprocess.Popen(r'powershell.exe -ExecutionPolicy RemoteSigned -file "run.ps1"', stdout=sys.stdout)
-            p.communicate()
+            os.system('cmd /c ".\\ffmpeg.exe -y -i Temp\\video.mp4 -i Temp\\audio.mp3 -c:v copy -c:a aac output.mp4"')
             time.sleep(0.0001)
             Progress.stop()
         else:
@@ -71,11 +63,11 @@ class Converter():
 
 # Setting up Interface
 root = Tk()
-img = PhotoImage(file=r'C:\Users\Gustavo dos Santos\PycharmProjects\YoutubeDownloader\background.png')
+img = PhotoImage(file=r'resources\\background.png')
 option = IntVar()
 root.geometry("700x500")
 root.title("Youtube Downloader")
-root.iconbitmap(r"C:\Users\Gustavo dos Santos\PycharmProjects\YoutubeDownloader\ico.ico")
+root.iconbitmap(r"resources\\ico.ico")
 canvas = tkinter.Canvas(root, width=700, height=500, highlightthickness=0)
 canvas.pack(fill="both", expand=True)
 Progress = ttk.Progressbar(canvas,mode="indeterminate", orient="horizontal", length=300)
